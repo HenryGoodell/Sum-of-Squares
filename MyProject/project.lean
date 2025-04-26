@@ -17,6 +17,12 @@ simp
 intro i hi
 exact mul_self_nonneg (eval x i)
 
+noncomputable def realPartPolynomial' (f : ℂ[X]) : ℂ[X] :=
+  f.support.sum (fun n => Polynomial.monomial n (f.coeff n).re)
+
+noncomputable def imPartPolynomial' (f : ℂ[X]) : ℂ [X] :=
+  f.support.sum (fun n => Polynomial.monomial n (f.coeff n).im)
+
 noncomputable def inductiveRootSetList {f : ℂ[X]}(g1: ∃(n : ℕ), f.degree = 2*n)(g2: ∀(a: ℕ), (f.coeff a).im=0) : Finset ℂ :=
   let rootset := f.roots.toFinset
   let rec build (remaining : Finset ℂ) (acc : Finset ℂ) : Finset ℂ :=
@@ -107,4 +113,7 @@ have h12:
 simp
 sorry
 rw[h4] at h12
---at this point I have to build polynomials with coefficients equal to the real and imaginary parts of the polynomial I squared in h12, there is probably a good way to do this with local definitions. The existing code could probably be improved by using local definitions to avoid repeating the same code over and over again. I will try to do this soon.
+have h13: (fun y => eval y ((realPartPolynomial' (f))^2 + (imPartPolynomial' (f))^2)) = (fun y =>(ofReal (((Complex.abs (eval y ((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))))^2)))
+sorry
+rw[←h12] at h13
+intro f1
