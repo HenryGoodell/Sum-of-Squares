@@ -107,4 +107,4 @@ have h12:
 simp
 sorry
 rw[h4] at h12
---at this point I have to build polynomials with coefficients equal to the real and imaginary parts of the polynomial I squared in h12, there is probably a good way to do this with local definitions.
+--at this point I have to build polynomials with coefficients equal to the real and imaginary parts of the polynomial I squared in h12, there is probably a good way to do this with local definitions. The existing code could probably be improved by using local definitions to avoid repeating the same code over and over again. I will try to do this soon.
