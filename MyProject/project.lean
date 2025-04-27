@@ -118,8 +118,22 @@ sorry
 rw[←h12] at h13
 intro f1
 --let sqs: Finset ℂ[X] := { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }
-have h14: (fun y => (eval y ((Finset.sum { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),
-(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }) (fun g => g^2)))) =
-(fun y => eval y f)
+have h14: (fun r => (eval r ((Finset.sum { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),
+(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }) (fun g => g*g)))) =
+(fun r => eval r f)
 rw[←h13]
 simp
+sorry
+exists { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),
+(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }
+apply And.intro
+apply Polynomial.funext
+rw[←funext_iff]
+rw[←h14]
+dsimp[realPartPolynomial',imPartPolynomial']
+simp
+apply And.intro
+intro q1
+sorry
+intro q2
+sorry --These last two sorrys seem relatively easy to prove, it just is a lot of wading through clunky definition.
