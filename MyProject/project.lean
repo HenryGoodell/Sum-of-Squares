@@ -113,7 +113,11 @@ have h12:
 simp
 sorry
 rw[h4] at h12
-have h13: (fun y => eval y ((realPartPolynomial' (f))^2 + (imPartPolynomial' (f))^2)) = (fun y =>(ofReal (((Complex.abs (eval y ((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))))^2)))
+have h13: (fun y => eval y ((realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z))))))^2 + (imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z))))))^2)) = (fun y =>(ofReal (((Complex.abs (eval y ((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))))^2)))
 sorry
 rw[←h12] at h13
 intro f1
+let sqs: Finset ℂ[X] := { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }
+have h14: (fun y => (eval y (sqs.sum (fun g => g^2))))=(fun y => eval y f)
+rw[←h13]
+simp
