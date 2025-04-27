@@ -117,7 +117,6 @@ have h13: (fun y => eval y ((realPartPolynomial' (((C (ofReal ((f.coeff f.natDeg
 sorry
 rw[←h12] at h13
 intro f1
---let sqs: Finset ℂ[X] := { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),(imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }
 have h14: (fun r => (eval r ((Finset.sum { (realPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))),
 (imPartPolynomial' (((C (ofReal ((f.coeff f.natDegree).re.sqrt)))*((f.roots.toFinset).prod (fun z => (monomial 1 1 - C z)))))) }) (fun g => g*g)))) =
 (fun r => eval r f)
